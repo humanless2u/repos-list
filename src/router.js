@@ -9,7 +9,7 @@ export default function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Main />} />
-                <Route path="/repositorio" element={<Repository />} />
+                <Route path="/repositorio/:repositoryname" element={<Repository />} />
             </Routes>
         </BrowserRouter>
     )
