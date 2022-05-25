@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 export const Container = styled.div({
     maxWidth: 700,
@@ -35,13 +35,35 @@ export const Form = styled.form({
     }
 })
 
-export const SubmitButton = styled.button({
-    border: 0,
-    backgroundColor: "#0D2636",
-    borderRadius: 4,
-    marginLeft: 10,
-    padding: "0 15px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-})
+//spinner keyframes animation
+const animate = keyframes`
+from{ transform: rotate(0deg) }
+to{ transform: rotate(360deg) }
+`
+
+export const SubmitButton = styled.button.attrs(props => ({
+    type: "submit",
+    disabled: props.loading
+}))`
+    border: 0;
+    background-color: #0D2636;
+    border-radius: 4;
+    margin-left: 10px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &[disabled]{
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    ${props => props.loading &&
+        css`
+        svg{
+            animation: ${animate} 2s linear infinite;
+        }
+        `
+    }
+`
