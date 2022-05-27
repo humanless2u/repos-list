@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { FaGithub, FaPlus, FaSpinner } from 'react-icons/fa'
+import { FaGithub, FaPlus, FaSpinner, FaBars } from 'react-icons/fa'
 
-import { Title, Container, Form, SubmitButton } from "./styles"
+import { Title, Container, Form, SubmitButton, List } from "./styles"
 
 import Api from '../../services/api'
 
@@ -59,6 +59,21 @@ export default function Main() {
 
                 </SubmitButton>
             </Form>
+
+            <List>
+                {
+                    repositories.map(repos => {
+                        return (
+                            <li key={repos.fullName} >
+                                <span>{repos.fullName}</span>
+                                <a href=''>
+                                    <FaBars size={20} />
+                                </a>
+                            </li>
+                        )
+                    })
+                }
+            </List>
 
         </Container >
     )
